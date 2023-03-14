@@ -1,2 +1,2 @@
 # SSIEI_backend
-Repositorio del Sistema de Sequimiento de Equipo Informatico.
+Repositorio del Sistema de Seguimiento de Equipo Informatico.
