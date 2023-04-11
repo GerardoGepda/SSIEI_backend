@@ -246,7 +246,7 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `usuarioNombre` varchar(50) NOT NULL,
-  `contrasena` varchar(255) NOT NULL,
+  `contrasena` varchar(256) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `nombre` varchar(25) NOT NULL,
   `apellido` varchar(25) NOT NULL,
