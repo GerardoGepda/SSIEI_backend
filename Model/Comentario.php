@@ -1,7 +1,7 @@
 <?php
 require_once "./Model/Model.php";
 
-class ComentariosModel extends Model 
+class ComentarioModel extends Model 
 {
     /*Propiedades*/
     public $id; //int 

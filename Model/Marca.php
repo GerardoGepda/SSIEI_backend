@@ -1,7 +1,7 @@
 <?php
 require_once "./Model/Model.php";
 
-class MarcasModel extends Model
+class MarcaModel extends Model
 {
     /*Propiedades*/
     public $id; //int 
