@@ -1,7 +1,7 @@
 <?php
 require_once './Model/Model.php';
 
-class ActivosModel extends Model
+class Activo extends Model
 {
     /*Propiedades*/
     public $id; //int 
@@ -21,6 +21,7 @@ class ActivosModel extends Model
     /*Métodos*/
     public function getAssets($idasset = 0)
     {
+      
         if ($idasset != 0) 
         {   
             $this->id = intval($idasset);
@@ -40,11 +41,12 @@ class ActivosModel extends Model
             INNER JOIN modelos M ON M.id=A.id INNER JOIN estados E ON E.id=A.id 
             INNER JOIN proveedores P ON P.id=A.id INNER JOIN subtipos S ON S.id=A.id";
             $rows = $this->getQuery($query);
+            
         }
 
         if (count($rows) != 0) 
         {
-            return $rows;
+            return json_encode($rows);
         }
         else
         {
