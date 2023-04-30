@@ -1,7 +1,7 @@
 <?php
 require_once "./Model/Model.php";
 
-class ModelosModel extends Model
+class Modelo extends Model
 {
     /*Propiedades*/
     public $id; //int 
@@ -9,4 +9,8 @@ class ModelosModel extends Model
     public $marca_id; //int FOREIGN KEY
     
     /*Métodos*/
+    public function getModels(){
+        $modelos = new Modelo();
+        return $modelos->getAll("modelos");
+    }
 }

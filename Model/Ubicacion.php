@@ -1,7 +1,7 @@
 <?php
 require_once "./Model/Model.php";
 
-class UbicacionModel extends Model
+class Ubicacion extends Model
 {
     /*Propiedades*/
     public $id; //int 
@@ -10,4 +10,9 @@ class UbicacionModel extends Model
     public $sede_id; //int FOREIGN KEY
     
     /*Métodos*/
+    public function getLocations(){
+        $ubicaciones = new Modelo();
+        return $ubicaciones ->getAll("ubicaciones");
+    }
+
 }

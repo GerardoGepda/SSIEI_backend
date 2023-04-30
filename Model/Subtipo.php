@@ -1,7 +1,7 @@
 <?php
 require_once "./Model/Model.php";
 
-class SubtipoModel extends Model
+class Subtipo extends Model
 {
     /*Propiedades*/
     public $id; //int 
@@ -9,4 +9,8 @@ class SubtipoModel extends Model
     public $tipo_id; //int FOREIGN KEY
     
     /*Métodos*/
+    public function getSubTypes(){
+        $subtipos = new Modelo();
+        return $subtipos->getAll("subtipos");
+    }
 }
