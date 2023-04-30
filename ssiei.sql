@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 06-04-2023 a las 16:55:17
+-- Tiempo de generación: 30-04-2023 a las 00:27:20
 -- Versión del servidor: 8.0.31
--- Versión de PHP: 8.0.26
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,10 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ssiei`
 --
-
-DROP DATABASE IF EXISTS `ssiei`;
-CREATE DATABASE IF NOT EXISTS `ssiei` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `ssiei`;
 
 -- --------------------------------------------------------
 
@@ -53,7 +49,17 @@ CREATE TABLE IF NOT EXISTS `activos` (
   KEY `FK_activo_ubicacion` (`ubicacion_id`),
   KEY `FK_activo_modelo` (`modelo_id`),
   KEY `FK_activo_responsable` (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `activos`
+--
+
+INSERT INTO `activos` (`id`, `descripcion`, `fecha`, `costo`, `codigo`, `serieNumero`, `comentario`, `subtipo_id`, `proveedor_id`, `estado_id`, `ubicacion_id`, `modelo_id`, `usuario_id`) VALUES
+(1, 'Monitor 20\"', '2018-11-20', '0.00', 'CDS-2011-0070', 'CNC6510MSD', 'No transferido', 1, 1, 1, 1, 1, 1),
+(2, 'Monitor 25\'\'', '2019-04-20', '0.00', 'CDS-2012-0070', 'CNC6510MSD', 'Transferido', 1, 1, 1, 1, 1, 1),
+(3, 'Monitor 25\'\'', '2019-04-20', '0.00', 'CDS-2012-0070', 'CNC6510MSD', 'Transferido', 1, 1, 1, 1, 1, 1),
+(4, 'Monitor 25\'\'', '2019-04-20', '0.00', 'CDS-2012-0070', 'CNC6510MSD', 'Transferido', 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -86,6 +92,14 @@ CREATE TABLE IF NOT EXISTS `estados` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Volcado de datos para la tabla `estados`
+--
+
+INSERT INTO `estados` (`id`, `nombre`) VALUES
+(0, 'Inactivo'),
+(1, 'Activo');
+
 -- --------------------------------------------------------
 
 --
@@ -97,7 +111,14 @@ CREATE TABLE IF NOT EXISTS `marcas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `marcas`
+--
+
+INSERT INTO `marcas` (`id`, `nombre`) VALUES
+(1, 'HP');
 
 -- --------------------------------------------------------
 
@@ -112,7 +133,14 @@ CREATE TABLE IF NOT EXISTS `modelos` (
   `marca_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_modelo_marca` (`marca_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `modelos`
+--
+
+INSERT INTO `modelos` (`id`, `nombre`, `marca_id`) VALUES
+(1, 'ProDisplay P202', 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +153,15 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`id`, `nombre`) VALUES
+(1, 'SISTEMAS C&C, S.A. DE C.V.'),
+(2, 'JEREMIAS DE JESUS ARTIGA DE PAZ');
 
 -- --------------------------------------------------------
 
@@ -139,6 +175,13 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `nombre`) VALUES
+(1, 'Administrador');
 
 -- --------------------------------------------------------
 
@@ -155,7 +198,14 @@ CREATE TABLE IF NOT EXISTS `sedes` (
   `usuario_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_sede_usuario` (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `sedes`
+--
+
+INSERT INTO `sedes` (`id`, `nombre`, `direccion`, `telefono`, `usuario_id`) VALUES
+(1, 'FGK', '49 Avenida Sur, #820, San Salvador', 22222222, 1);
 
 -- --------------------------------------------------------
 
@@ -170,7 +220,15 @@ CREATE TABLE IF NOT EXISTS `subtipos` (
   `tipo_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_subtipo_tipo` (`tipo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `subtipos`
+--
+
+INSERT INTO `subtipos` (`id`, `nombre`, `tipo_id`) VALUES
+(1, 'Monitor-Desktop', 1),
+(2, 'Mesa', 2);
 
 -- --------------------------------------------------------
 
@@ -218,7 +276,15 @@ CREATE TABLE IF NOT EXISTS `tipos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `tipos`
+--
+
+INSERT INTO `tipos` (`id`, `nombre`) VALUES
+(1, 'Equipo de computación'),
+(2, 'Mobiliario');
 
 -- --------------------------------------------------------
 
@@ -234,7 +300,14 @@ CREATE TABLE IF NOT EXISTS `ubicaciones` (
   `sede_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_ubicacion_sede` (`sede_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `ubicaciones`
+--
+
+INSERT INTO `ubicaciones` (`id`, `nombre`, `descripcion`, `sede_id`) VALUES
+(1, 'Aula CDS SS', 'La ubicación esta en la fundación', 1);
 
 -- --------------------------------------------------------
 
@@ -246,7 +319,7 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `usuarioNombre` varchar(50) NOT NULL,
-  `contrasena` varchar(256) NOT NULL,
+  `contrasena` varchar(255) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `nombre` varchar(25) NOT NULL,
   `apellido` varchar(25) NOT NULL,
@@ -254,7 +327,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `rol_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_usuario_rol` (`rol_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `usuarioNombre`, `contrasena`, `correo`, `nombre`, `apellido`, `estado`, `rol_id`) VALUES
+(1, 'Peter', '123456', 'peter@fgk.com', 'Peter', 'Rodriguez ', 1, 1);
 
 --
 -- Restricciones para tablas volcadas
