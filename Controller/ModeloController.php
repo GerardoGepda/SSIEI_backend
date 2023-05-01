@@ -16,5 +16,13 @@ class ModeloController extends Controller
             exit();
         } 
     }
+    public function modelsByBrand($id){
+        if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $modelos=$this->modelo->getModelsByBrand($id);
+            header("HTTP/1.1 200");
+            echo json_encode($modelos);
+            exit();
+        } 
+    }
 }
 ?>

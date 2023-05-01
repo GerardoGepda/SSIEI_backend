@@ -15,4 +15,12 @@ class Modelo extends Model
             $rows = $this->getQuery($query);
         return $rows;
     }
+    public function getModelsByBrand($idbrand){
+        $this->id = intval($idbrand);
+        $query="SELECT M.id,M.nombre,MA.Nombre as nombre_marca
+            FROM modelos M INNER JOIN marcas MA ON M.marca_id=MA.id WHERE M.marca_id = :id";
+            $params = array("id" => $this->id);
+            $rows = $this->getQuery($query, $params);  
+        return $rows;
+    }
 }

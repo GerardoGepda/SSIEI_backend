@@ -1,7 +1,7 @@
 <?php
 require_once './Model/Model.php';
 
-class TicketModel extends Model
+class Ticket extends Model
 {
     /*Propiedades*/
     public $id; //int 

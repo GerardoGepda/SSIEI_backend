@@ -1,7 +1,7 @@
 <?php
 require_once "./Model/Model.php";
 
-class RolModel extends Model
+class Rol extends Model
 {
     /*Propiedades*/
     public $id; //int 
