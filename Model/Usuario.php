@@ -1,7 +1,7 @@
 <?php
 require_once './Model/Model.php';
 
-class UsuarioModel extends Model
+class Usuario extends Model
 {
     /*Propiedades*/
     public $id; //int
@@ -46,5 +46,13 @@ class UsuarioModel extends Model
         {
             return null;
         }
+    }
+    public function getUsers()
+    {
+        $query="SELECT U.id, U.usuarioNombre, U.contrasena, U.correo, U.nombre,U.apellido, 
+        U.estado,R.nombre as nombre_rol FROM usuarios U 
+        INNER JOIN roles R ON R.id=U.id";
+            $rows = $this->getQuery($query);
+        return $rows;
     }
 }

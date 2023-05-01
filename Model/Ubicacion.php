@@ -11,8 +11,10 @@ class Ubicacion extends Model
     
     /*Métodos*/
     public function getLocations(){
-        $ubicaciones = new Modelo();
-        return $ubicaciones ->getAll("ubicaciones");
+        $query="SELECT U.id,U.nombre,S.Nombre as nombre_sede
+            FROM ubicaciones U INNER JOIN sedes S ON U.id=S.id";
+            $rows = $this->getQuery($query);
+        return $rows;
     }
 
 }

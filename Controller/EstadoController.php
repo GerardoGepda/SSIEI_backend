@@ -1,21 +1,20 @@
 <?php
 require_once "./Controller/Controller.php";
-require_once "./Model/Usuario.php";
+require_once "./Model/Estado.php";
 
-class UsuarioController extends Controller
+class EstadoController extends Controller
 {
-    private $usuario;
+    private $estado;
     function __construct(){
-        $this->usuario=new Usuario();
+        $this->estado=new Estado();
     }
     public function index(){
         if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-            $usuarios=$this->usuario->getUsers();
+            $estados=$this->estado->getStates();
             header("HTTP/1.1 200");
-            echo json_encode($usuarios);
+            echo json_encode($estados);
             exit();
         }
     }
 
 }
-?>

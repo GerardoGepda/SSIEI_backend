@@ -36,10 +36,14 @@ class Activo extends Model
         else 
         {
             $query="SELECT A.id, A.descripcion, A.fecha, A.costo, A.codigo, A.serieNumero, A.comentario,
-            S.nombre,P.nombre, E.nombre, U.nombre, M.nombre, R.usuarioNombre
-            FROM activos A INNER JOIN ubicaciones U ON U.id=A.id INNER JOIN usuarios R ON R.id = A.id 
-            INNER JOIN modelos M ON M.id=A.id INNER JOIN estados E ON E.id=A.id 
-            INNER JOIN proveedores P ON P.id=A.id INNER JOIN subtipos S ON S.id=A.id";
+            S.nombre as nombre_subtipo,P.nombre as nombre_proveedor, E.nombre as nombre_estado, 
+            U.nombre as nombre_ubicacion, M.nombre as nombre_modelo, R.usuarioNombre as nombre_usuario
+            FROM activos A INNER JOIN ubicaciones U ON U.id=A.id 
+            INNER JOIN usuarios R ON R.id = A.id 
+            INNER JOIN modelos M ON M.id=A.id 
+            INNER JOIN estados E ON E.id=A.id 
+            INNER JOIN proveedores P ON P.id=A.id 
+            INNER JOIN subtipos S ON S.id=A.id";
             $rows = $this->getQuery($query);
             
         }

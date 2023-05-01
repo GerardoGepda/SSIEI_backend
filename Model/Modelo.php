@@ -10,7 +10,9 @@ class Modelo extends Model
     
     /*Métodos*/
     public function getModels(){
-        $modelos = new Modelo();
-        return $modelos->getAll("modelos");
+        $query="SELECT M.id,M.nombre,MA.Nombre as nombre_marca
+            FROM modelos M INNER JOIN marcas MA ON M.id=MA.id";
+            $rows = $this->getQuery($query);
+        return $rows;
     }
 }
