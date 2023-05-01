@@ -16,5 +16,13 @@ class SubtipoController extends Controller
             exit();
         } 
     }
+    public function subTypesByType($id){
+        if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $subtipos=$this->subtipo->getSubTypesByType($id);
+            header("HTTP/1.1 200");
+            echo json_encode($subtipos);
+            exit();
+        } 
+    }
 }
 ?>

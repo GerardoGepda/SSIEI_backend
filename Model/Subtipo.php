@@ -11,8 +11,16 @@ class Subtipo extends Model
     /*Métodos*/
     public function getSubTypes(){
         $query="SELECT S.id, S.nombre, T.Nombre as nombre_tipo
-            FROM subtipos S INNER JOIN tipos T ON S.id=T.id";
+            FROM subtipos S INNER JOIN tipos T ON S.tipo_id=T.id";
             $rows = $this->getQuery($query);
+        return $rows;
+    }
+    public function getSubTypesByType($idtype){
+            $this->id = intval($idtype);
+            $query="SELECT S.id, S.nombre, T.Nombre as nombre_tipo
+            FROM subtipos S INNER JOIN tipos T ON S.tipo_id=T.id WHERE S.tipo_id=:id";
+            $params = array("id" => $this->id);
+            $rows = $this->getQuery($query, $params);  
         return $rows;
     }
 }
