@@ -26,10 +26,15 @@ class Activo extends Model
         {   
             $this->id = intval($idasset);
             $query="SELECT A.id, A.descripcion, A.fecha, A.costo, A.codigo, A.serieNumero, A.comentario,
-            S.nombre,P.nombre, E.nombre, U.nombre, M.nombre, R.usuarioNombre
-            FROM activos A INNER JOIN ubicaciones U ON U.id=A.id INNER JOIN usuarios R ON R.id = A.id 
-            INNER JOIN modelos M ON M.id=A.id INNER JOIN estados E ON E.id=A.id 
-            INNER JOIN proveedores P ON P.id=A.id INNER JOIN subtipos S ON S.id=A.id WHERE A.id = :id";
+            S.nombre as nombre_subtipo,P.nombre as nombre_proveedor, 
+            E.nombre as nombre_estado, U.nombre as nombre_ubicacion, 
+            M.nombre as nombre_modelo, R.usuarioNombre 
+            FROM activos A INNER JOIN ubicaciones U ON U.id=A.ubicacion_id 
+            INNER JOIN usuarios R ON R.id = A.usuario_id 
+            INNER JOIN modelos M ON M.id=A.modelo_id 
+            INNER JOIN estados E ON E.id=A.estado_id 
+            INNER JOIN proveedores P ON P.id=A.proveedor_id 
+            INNER JOIN subtipos S ON S.id=A.subtipo_id WHERE A.id = :id";
             $params = array("id" => $this->id);
             $rows = $this->getQuery($query, $params);
         }
@@ -38,12 +43,12 @@ class Activo extends Model
             $query="SELECT A.id, A.descripcion, A.fecha, A.costo, A.codigo, A.serieNumero, A.comentario,
             S.nombre as nombre_subtipo,P.nombre as nombre_proveedor, E.nombre as nombre_estado, 
             U.nombre as nombre_ubicacion, M.nombre as nombre_modelo, R.usuarioNombre as nombre_usuario
-            FROM activos A INNER JOIN ubicaciones U ON U.id=A.id 
-            INNER JOIN usuarios R ON R.id = A.id 
-            INNER JOIN modelos M ON M.id=A.id 
-            INNER JOIN estados E ON E.id=A.id 
-            INNER JOIN proveedores P ON P.id=A.id 
-            INNER JOIN subtipos S ON S.id=A.id";
+            FROM activos A INNER JOIN ubicaciones U ON U.id=A.ubicacion_id 
+            INNER JOIN usuarios R ON R.id = A.usuario_id 
+            INNER JOIN modelos M ON M.id=A.modelo_id 
+            INNER JOIN estados E ON E.id=A.estado_id 
+            INNER JOIN proveedores P ON P.id=A.proveedor_id 
+            INNER JOIN subtipos S ON S.id=A.subtipo_id";
             $rows = $this->getQuery($query);
             
         }
