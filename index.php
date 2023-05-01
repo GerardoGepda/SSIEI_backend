@@ -11,7 +11,7 @@ include_once 'Controller/UsuarioController.php';
 include_once 'Controller/EstadoController.php';
 $url=$_SERVER['REQUEST_URI'];
 //define('BASEPATH',true);
-session_start();//Iniciando sesion
+session_start();//Iniciando sesion.
 $url=explode("/",$url);
 $controller=empty($url[2])?"Activo":$url[2];
 $controller.="Controller";
