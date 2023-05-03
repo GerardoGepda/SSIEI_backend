@@ -18,18 +18,24 @@ class Usuario extends Model
     {
         $this->rol_id = $idrol;
         $query="INSERT INTO usuarios 
-        VALUES (:id,:usuarioNombre,:contrasena,:correo,:nombre,:apellido,:estado,:rol_id)";
+        VALUES (:id,:usuarioNombre,SHA2(:contrasena,256),:correo,:nombre,:apellido,:estado,:rol_id)";
         $params= array(
             "id" => null,
             "usuarioNombre" => $this->usuarioNombre,
-            "contrasena" => "SHA2(".$this->contrasena.",256)",
+            "contrasena" => $this->contrasena,
             "correo" => $this->correo,
             "nombre" => $this->nombre,
             "apellido" => $this->apellido,
             "estado" => $this->estado,
             "rol_id" => $this->rol_id,
         );        
-        return $this->setQuery($query,$params);
+          if($this->setQuery($query,$params) != -1)
+          {
+            return  json_encode(["code" =>1, "msg"=> "Insertado con exito"]);
+          }
+          else{
+            return  json_encode(["code" =>0, "msg"=> "Error"]);
+          }
     }
     
     public function validateUser()
@@ -49,9 +55,9 @@ class Usuario extends Model
     }
     public function getUsers()
     {
-        $query="SELECT U.id, U.usuarioNombre, U.contrasena, U.correo, U.nombre,U.apellido, 
+        $query="SELECT U.id, U.usuarioNombre, U.correo, U.nombre,U.apellido, 
         U.estado,R.nombre as nombre_rol FROM usuarios U 
-        INNER JOIN roles R ON R.id=U.id";
+        INNER JOIN roles R ON R.id=U.rol_id ORDER BY U.id";
             $rows = $this->getQuery($query);
         return $rows;
     }

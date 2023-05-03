@@ -47,7 +47,6 @@ abstract class Model
         catch(Exception $ex)
         {
             $this->closeConnection();
-            echo "No se pudo ejecutar la consulta SQL: ".$ex->getMessage();
             return -1;
         }
 
