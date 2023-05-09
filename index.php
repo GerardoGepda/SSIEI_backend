@@ -13,6 +13,7 @@ include_once 'Controller/ProveedorController.php';
 include_once 'Controller/UbicacionController.php';
 include_once 'Controller/UsuarioController.php';
 include_once 'Controller/EstadoController.php';
+include_once 'Controller/TicketController.php';
 $url=$_SERVER['REQUEST_URI'];
 //define('BASEPATH',true);
 session_start();//Iniciando sesion
