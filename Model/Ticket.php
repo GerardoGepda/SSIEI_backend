@@ -33,4 +33,31 @@ class Ticket extends Model
         );
         return $this->setQuery($query, $params);
     }
+    public function getTickets($idasset)
+    {
+      
+        if ($idasset != null) 
+        {   
+            $this->id = intval($idasset);
+            $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario, A.descripcion as nombre_activo, T.descripcion, T.fecha, T.fechaRevision, 
+            T.fechaCierre,TE.nombre as nombre_ticket_estado
+            FROM tickets T INNER JOIN Activos A ON T.activo_id=A.id 
+            INNER JOIN usuarios U ON U.id = T.usuario_id
+            INNER JOIN ticketestados TE ON TE.id = T.ticketestado_id
+            WHERE T.id = :id";
+            $params = array("id" => $this->id);
+            $rows = $this->getQuery($query, $params);
+            return json_encode($rows);
+        }
+        else 
+        {
+            $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario, A.descripcion as nombre_activo,T.descripcion, T.fecha, T.fechaRevision, 
+            T.fechaCierre,TE.nombre as nombre_ticket_estado
+            FROM tickets T INNER JOIN Activos A ON T.activo_id=A.id 
+            INNER JOIN usuarios U ON U.id = T.usuario_id
+            INNER JOIN ticketestados TE ON TE.id = T.ticketestado_id ";
+            $rows = $this->getQuery($query);
+            return json_encode($rows);
+        }
+    }
 }

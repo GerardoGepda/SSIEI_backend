@@ -8,4 +8,8 @@ class Rol extends Model
     public $nombre; //varchar(50)
     
     /*Métodos*/
+    public function getRoles(){
+        $roles = new Rol();
+        return $roles->getAll("roles");
+    }
 }
