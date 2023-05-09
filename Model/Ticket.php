@@ -39,7 +39,7 @@ class Ticket extends Model
         if ($idasset != null) 
         {   
             $this->id = intval($idasset);
-            $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario  ,T.descripcion, T.fecha, T.fechaRevision, 
+            $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario, A.descripcion as nombre_activo, T.descripcion, T.fecha, T.fechaRevision, 
             T.fechaCierre,TE.nombre as nombre_ticket_estado
             FROM tickets T INNER JOIN Activos A ON T.activo_id=A.id 
             INNER JOIN usuarios U ON U.id = T.usuario_id
@@ -51,7 +51,7 @@ class Ticket extends Model
         }
         else 
         {
-            $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario  ,T.descripcion, T.fecha, T.fechaRevision, 
+            $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario, A.descripcion as nombre_activo,T.descripcion, T.fecha, T.fechaRevision, 
             T.fechaCierre,TE.nombre as nombre_ticket_estado
             FROM tickets T INNER JOIN Activos A ON T.activo_id=A.id 
             INNER JOIN usuarios U ON U.id = T.usuario_id
