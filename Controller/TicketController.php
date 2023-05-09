@@ -9,7 +9,7 @@ class TicketController extends Controller
         $this->ticket=new Ticket();
     }
 
-    public function Tickets($id){
+    public function index($id){
         if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $tickets=$this->ticket->getTickets($id);
             header("HTTP/1.1 200");

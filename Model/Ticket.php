@@ -33,10 +33,10 @@ class Ticket extends Model
         );
         return $this->setQuery($query, $params);
     }
-    public function getTickets($idasset = 0)
+    public function getTickets($idasset)
     {
       
-        if ($idasset != 0) 
+        if ($idasset != null) 
         {   
             $this->id = intval($idasset);
             $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario  ,T.descripcion, T.fecha, T.fechaRevision, 
