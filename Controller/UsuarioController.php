@@ -16,6 +16,20 @@ class UsuarioController extends Controller
             exit();
         }
     }
+    public function insert(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $input = $_POST;
+            $this->usuario->usuarioNombre=$input['usuarioNombre'];
+            $this->usuario->contrasena=$input['contrasena'];
+            $this->usuario->correo=$input['correo'];
+            $this->usuario->nombre=$input['nombre'];
+            $this->usuario->apellido=$input['apellido'];
+            $this->usuario->estado=$input['estado'];
+            echo $this->usuario->addUser($input['rol_id']);
+            header("HTTP/1.1 200");
+            exit();
+        }
+    }
 
 }
 ?>
