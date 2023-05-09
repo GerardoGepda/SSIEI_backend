@@ -29,13 +29,14 @@ class Usuario extends Model
             "estado" => $this->estado,
             "rol_id" => $this->rol_id,
         );        
-          if($this->setQuery($query,$params) != -1)
-          {
+        if($this->setQuery($query,$params) != -1)
+        {
             return  json_encode(["code" =>1, "msg"=> "Insertado con exito"]);
-          }
-          else{
+        }
+        else
+        {
             return  json_encode(["code" =>0, "msg"=> "Error"]);
-          }
+        }
     }
     
     public function validateUser()
@@ -53,12 +54,26 @@ class Usuario extends Model
             return null;
         }
     }
-    public function getUsers()
+    public function getUsers($idusuario = 0)
     {
-        $query="SELECT U.id, U.usuarioNombre, U.correo, U.nombre,U.apellido, 
-        U.estado,R.nombre as nombre_rol FROM usuarios U 
-        INNER JOIN roles R ON R.id=U.rol_id ORDER BY U.id";
+        if ($idusuario != 0) 
+        {
+            $query="SELECT U.id, U.usuarioNombre, U.correo, U.nombre, U.apellido, U.estado,R.nombre as nombre_rol 
+                    FROM usuarios U 
+                    INNER JOIN roles R ON R.id=U.rol_id
+                    WHERE U.id = :iduser 
+                    ORDER BY U.id";
+            $params = array("iduser" => intval($idusuario));
+            $rows = $this->getQuery($query, $params);
+        } 
+        else 
+        {
+            $query="SELECT U.id, U.usuarioNombre, U.correo, U.nombre, U.apellido, U.estado,R.nombre as nombre_rol 
+                    FROM usuarios U 
+                    INNER JOIN roles R ON R.id=U.rol_id
+                    ORDER BY U.id";
             $rows = $this->getQuery($query);
+        }
         return $rows;
     }
 }

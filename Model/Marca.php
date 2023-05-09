@@ -8,8 +8,27 @@ class Marca extends Model
     public $nombre; //varchar(50)
     
     /*Métodos*/
-    public function getBrands(){
-        $marcas = new Marca();
-        return $marcas->getAll("marcas");
+    public function getBrands($idmarca = 0)
+    {
+        if ($idmarca != 0) 
+        {
+            return $this->getAll("marcas", intval($idmarca));
+        }
+        else 
+        {
+            return $this->getAll("marcas");
+        }
+    }
+
+    public function addBrand()
+    {
+        $query="INSERT INTO marcas
+                VALUES (:id, :nombre)";
+        $params = array
+        (
+            "id" => null,
+            "nombre" => $this->nombre
+        );
+        return $this->setQuery($query, $params);
     }
 }

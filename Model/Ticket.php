@@ -33,14 +33,14 @@ class Ticket extends Model
         );
         return $this->setQuery($query, $params);
     }
+
     public function getTickets($idasset)
     {
-      
         if ($idasset != null) 
         {   
             $this->id = intval($idasset);
-            $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario, A.descripcion as nombre_activo, T.descripcion, T.fecha, T.fechaRevision, 
-            T.fechaCierre,TE.nombre as nombre_ticket_estado
+            $query="SELECT T.id, T.descripcion, U.nombre + ' ' + U.apellido as nombre_usuario, A.descripcion as nombre_activo, T.fecha, T.fechaRevision, 
+            T.fechaCierre, TE.nombre as nombre_ticket_estado
             FROM tickets T INNER JOIN Activos A ON T.activo_id=A.id 
             INNER JOIN usuarios U ON U.id = T.usuario_id
             INNER JOIN ticketestados TE ON TE.id = T.ticketestado_id
@@ -51,8 +51,8 @@ class Ticket extends Model
         }
         else 
         {
-            $query="SELECT T.id, A.descripcion, U.nombre as nombre_usuario, A.descripcion as nombre_activo,T.descripcion, T.fecha, T.fechaRevision, 
-            T.fechaCierre,TE.nombre as nombre_ticket_estado
+            $query="SELECT T.id, T.descripcion, U.nombre + ' ' + U.apellido as nombre_usuario, A.descripcion as nombre_activo, T.fecha, T.fechaRevision, 
+            T.fechaCierre, TE.nombre as nombre_ticket_estado
             FROM tickets T INNER JOIN Activos A ON T.activo_id=A.id 
             INNER JOIN usuarios U ON U.id = T.usuario_id
             INNER JOIN ticketestados TE ON TE.id = T.ticketestado_id ";

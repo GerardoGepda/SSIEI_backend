@@ -8,8 +8,27 @@ class Rol extends Model
     public $nombre; //varchar(50)
     
     /*Métodos*/
-    public function getRoles(){
-        $roles = new Rol();
-        return $roles->getAll("roles");
+    public function getRoles($idrol = 0)
+    {
+        if ($idrol != 0) 
+        {
+            return $this->getAll("roles", intval($idrol));
+        }
+        else 
+        {
+            return $this->getAll("roles");
+        }
+    }
+
+    public function addRol()
+    {
+        $query="INSERT INTO roles
+                VALUES (:id, :nombre)";
+        $params = array
+        (
+            "id" => $this->id,
+            "nombre" => $this->nombre
+        );
+        return $this->setQuery($query, $params);
     }
 }
