@@ -13,7 +13,7 @@ class TicketController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $tickets=$this->ticket->getTickets($id);
             header("HTTP/1.1 200");
-            echo json_encode($tickets);
+            echo $tickets;
             exit();
         } 
     }
