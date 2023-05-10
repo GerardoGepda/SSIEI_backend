@@ -14,6 +14,7 @@ include_once 'Controller/UbicacionController.php';
 include_once 'Controller/UsuarioController.php';
 include_once 'Controller/EstadoController.php';
 include_once 'Controller/TicketController.php';
+include_once 'Controller/TicketEstadoController.php';
 include_once 'Controller/RolController.php';
 $url=$_SERVER['REQUEST_URI'];
 //define('BASEPATH',true);
