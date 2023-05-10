@@ -5,9 +5,11 @@ require_once "./Model/Activo.php";
 class ActivoController extends Controller
 {
     private $activo;
+
     function __construct(){
         $this->activo=new Activo();
     }
+    
     public function index(){
         if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $activos=$this->activo->getAssets();
@@ -27,9 +29,7 @@ class ActivoController extends Controller
             $input['ubicacion_id'], $input['modelo_id'],$input['usuario_id'], );
             header("HTTP/1.1 200");
             exit();
-        }
-           
-           
+        }    
     }
 }
 ?>

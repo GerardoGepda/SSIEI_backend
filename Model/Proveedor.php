@@ -8,8 +8,27 @@ class Proveedor extends Model
     public $nombre; //varchar(50)
     
     /*Métodos*/
-    public function getProviders(){
-        $proveedores = new Modelo();
-        return $proveedores->getAll("proveedores");
+    public function getProviders($idproveedor = 0)
+    {
+        if ($idproveedor != 0) 
+        {
+            return $this->getAll("proveedores", intval($idproveedor));
+        }
+        else 
+        {
+            return $this->getAll("proveedores");
+        }
+    }
+
+    public function addProvider()
+    {
+        $query="INSERT INTO proveedores
+                VALUES (:id, :nombre)";
+        $params = array
+        (
+            "id" => null,
+            "nombre" => $this->nombre
+        );
+        return $this->setQuery($query, $params);
     }
 }

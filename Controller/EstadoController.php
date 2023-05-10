@@ -8,7 +8,9 @@ class EstadoController extends Controller
     function __construct(){
         $this->estado=new Estado();
     }
-    public function index(){
+
+    public function index()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $estados=$this->estado->getStates();
             header("HTTP/1.1 200");
@@ -17,4 +19,23 @@ class EstadoController extends Controller
         }
     }
 
+    public function insert()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $input = $_POST;
+            $this->estado->id=$input['id'];
+            $this->estado->nombre=$input['nombre'];
+            $state = $this->estado->addState();
+            if($state != -1)
+            {
+                return  json_encode(["code" =>1, "msg"=> "Insertado con exito"]);
+            }
+            else
+            {
+                return  json_encode(["code" =>0, "msg"=> "Error"]);
+            }
+            header("HTTP/1.1 200");
+            exit();
+        }
+    }
 }

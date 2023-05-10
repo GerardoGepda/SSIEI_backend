@@ -16,6 +16,7 @@ class UsuarioController extends Controller
             exit();
         }
     }
+
     public function insert(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $input = $_POST;
@@ -30,6 +31,5 @@ class UsuarioController extends Controller
             exit();
         }
     }
-
 }
 ?>

@@ -21,7 +21,6 @@ class Activo extends Model
     /*Métodos*/
     public function getAssets($idasset = 0)
     {
-      
         if ($idasset != 0) 
         {   
             $this->id = intval($idasset);
@@ -52,7 +51,6 @@ class Activo extends Model
             $rows = $this->getQuery($query);
             
         }
-
         if (count($rows) != 0) 
         {
             return json_encode($rows);
@@ -63,6 +61,7 @@ class Activo extends Model
             return null;
         }
     }
+
     public function addAsset($idsubtipo, $idproveedor, $idestado, $idubicacion, $idmodelo, $idusuario)
     {
         $this->subtipo_id = $idsubtipo;
@@ -90,6 +89,7 @@ class Activo extends Model
         );
         return $this->setQuery($query, $params);
     }
+
     public function updateAsset()
     {
         $query="UPDATE activos SET descripcion=:descripcion, fecha=:fecha, costo=:costo, codigo=:codigo,
@@ -112,6 +112,7 @@ class Activo extends Model
         );
         return $this->setQuery($query,$params);
     }
+
     public function removeAsset($idasset)
     {
         $this->id = intval($idasset);
