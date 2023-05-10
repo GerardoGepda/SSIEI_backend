@@ -12,11 +12,11 @@ class TicketEstado extends Model
     {
         if ($idticketestado != 0) 
         {
-            return $this->getAll("ticketestados", intval($idticketestado));
+            return json_encode($this->getAll("ticketestados", intval($idticketestado)));
         }
         else 
         {
-            return $this->getAll("ticketestados");
+            return json_encode($this->getAll("ticketestados"));
         }
     }
 
